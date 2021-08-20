@@ -66,7 +66,10 @@ class Test(unittest.TestCase):
     def create_non_unique_string(self):
         s = ''.join(random.choices(string.ascii_lowercase, k=self.string_length))
         index = random.randint(0, self.string_length - 1)
-        return s[:index] + s[0] + s[index + 1:]
+        dup_index = random.randint(0, self.string_length - 1)
+        while index == dup_index:
+            dup_index = random.randint(0, self.string_length - 1)
+        return s[:index] + s[dup_index] + s[index + 1:]
 
     number_of_tests = 1000
     def test(self):
