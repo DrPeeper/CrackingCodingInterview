@@ -29,6 +29,10 @@ def is_unique_sort(string):
             return False
     return True
 
+def is_unique_pythonic(string):
+    # O(n)
+    return len(set(string)) == len(string)
+
 def is_unique_var(string):
     # O(n^2) with O(1) space.
     for var_index in range(len(string)):
@@ -37,7 +41,7 @@ def is_unique_var(string):
                 return False
     return True
 
-def is_unique_pythonic(string):
+def is_unique_list_comprehension(string):
     # O(n^2) pythonic.
     for index in range(len(string)):
         if string[index] in string[index + 1:]:
@@ -74,7 +78,7 @@ class Test(unittest.TestCase):
     number_of_tests = 1000
     def test(self):
         self.assertFalse(self.string_length > 26)
-        functions = [is_unique_hash, is_unique_barray, is_unique_sort, is_unique_var, is_unique_pythonic]
+        functions = [is_unique_hash, is_unique_barray, is_unique_sort, is_unique_var, is_unique_pythonic, is_unique_list_comprehension]
         
         for _ in range(self.number_of_tests):
             for function in functions:
