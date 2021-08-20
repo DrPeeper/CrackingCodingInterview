@@ -20,6 +20,15 @@ def is_unique_barray(string):
         barray[ord(char) - 97] = 1
     return True
 
+def is_unique_sort(string):
+    # O(nlogn) because of the sorting.
+    # This algorithm only requires extra space if the sorting algorithm does.
+    string_list = sorted(string)
+    for index in range(len(string_list) - 1):
+        if string_list[index] == string_list[index + 1]:
+            return False
+    return True
+
 def is_unique_var(string):
     # O(n^2) with O(1) space.
     for var_index in range(len(string)):
@@ -61,7 +70,7 @@ class Test(unittest.TestCase):
     number_of_tests = 1000
     def test(self):
         self.assertFalse(self.string_length > 26)
-        functions = [is_unique_hash, is_unique_barray, is_unique_var, is_unique_pythonic]
+        functions = [is_unique_hash, is_unique_barray, is_unique_sort, is_unique_var, is_unique_pythonic]
         
         for _ in range(self.number_of_tests):
             for function in functions:
